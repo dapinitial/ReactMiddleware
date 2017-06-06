@@ -15,13 +15,6 @@ export default function({ dispatch }) {
       * we have the data,
       * create a new action and send it through all our middlewares again!
       */
-    action.payload
-      .then(response => {
-      /** Create a new action with the old type,
-        * but replace the promise with the response data.
-        */
-        const newAction = { ...action, payload: response };
-        dispatch(newAction);
-      });
+    action.payload.then(payload => dispatch({ ...action, payload }) );
   }
 }
